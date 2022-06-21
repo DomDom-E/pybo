@@ -8,9 +8,15 @@ class Question(models.Model):
     create_date = models.DateTimeField()
     modify_date = models.DateTimeField(null=True, blank=True)
     voter = models.ManyToManyField(User, related_name='voter_question')  # voter 추가
+    view = models.PositiveIntegerField(default=0)
 
     def __str__(self):
         return self.subject
+
+    @property
+    def update_view(self):
+        self.view = self.view + 1
+        self.save()
 
 class Answer(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='author_answer')

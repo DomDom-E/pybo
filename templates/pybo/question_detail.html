@@ -1,6 +1,9 @@
 {% extends 'base.html' %}
 {% load pybo_filter %}
 {% block content %}
+
+{{ question.update_view|default_if_none:'' }}
+
 <div class="container my-3">
     <!-- 사용자 오류 표시 -->
     {% if messages %}
